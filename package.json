@@ -1,5 +1,6 @@
 {
   "name": "eshop",
+  "type": "module",
   "version": "1.0.0",
   "description": "MERN shopping app ",
   "main": "server.js",
@@ -20,7 +21,9 @@
   },
   "homepage": "https://github.com/samip779/ecommerce#readme",
   "dependencies": {
-    "express": "^4.18.1"
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4"
   },
   "devDependencies": {
     "concurrently": "^7.2.1",
