@@ -8,7 +8,9 @@
     "start": "node api/server",
     "server": "nodemon api/server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node api/seeder",
+    "data:destroy": "node api/seeder -d"
   },
   "repository": {
     "type": "git",
