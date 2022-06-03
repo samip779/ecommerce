@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Row,
@@ -17,16 +17,21 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 
 const ProductScreen = () => {
-  const [qty, setQty] = useState(0);
   const dispatch = useDispatch();
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+  const [qty, setQty] = useState(product.countInStock > 0 ? 1 : 0);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(listProductDetails(id));
   }, [id, dispatch]);
+
+  const addToCartHandler = () => {
+    navigate(`/cart/${id}?qty=${qty}`);
+  };
 
   return (
     <>
@@ -106,6 +111,7 @@ const ProductScreen = () => {
                 <ListGroup.Item>
                   <div className="d-grid gap-2">
                     <Button
+                      onClick={addToCartHandler}
                       className=" btn-block"
                       type="button"
                       disabled={product.countInStock === 0}
